@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/presentation/core/colors/app_colors.dart';
 
 class TextFieldWidget extends StatelessWidget {
-
   final TextEditingController controller;
   final String textValue;
-  const TextFieldWidget({ Key? key, required this.controller, required this.textValue }) : super(key: key);
-
-  //tareas cuando esten seleccionado poder elegir el color
-  //definir un color primario, secuandario y terciario para la app
-  //agregar validaciones 1 mayuscula 1 minuscula y un numero
-  //agregar icono y poneler un color
+  final Color cursorColor;
+  final String? Function(String) validator;
+  const TextFieldWidget(
+      {Key? key,
+      required this.controller,
+      required this.textValue,
+      this.cursorColor = AppColors.tertiaryAppColor,
+      required this.validator})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 20),
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Container(
-        decoration: BoxDecoration(
-          color: const Color(0xffD9D9D9),
-          borderRadius: BorderRadius.circular(20)
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: TextFormField(
-          controller: controller,
-          decoration: InputDecoration(
-            prefixIcon: const Icon(Icons.access_alarm),
-            hintText: textValue,
-            border: InputBorder.none
-          ),
-        ),
-      ),
+    return TextFormField(
+      controller: controller,
+      decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 15.0),
+          hintText: textValue,
+          hintStyle: const TextStyle(color: AppColors.hintTextColor),
+          filled: true,
+          fillColor: AppColors.primaryAppColor,
+          focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: AppColors.tertiaryAppColor),
+              borderRadius: BorderRadius.circular(20.0)),
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(20.0))),
+      validator: (value) => validator(value ?? ''),
+      cursorColor: cursorColor,
     );
   }
 }
