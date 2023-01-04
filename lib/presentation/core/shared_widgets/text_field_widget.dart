@@ -6,18 +6,22 @@ class TextFieldWidget extends StatelessWidget {
   final String textValue;
   final Color cursorColor;
   final String? Function(String) validator;
+  final TextInputType keyboardType;
   const TextFieldWidget(
       {Key? key,
       required this.controller,
       required this.textValue,
       this.cursorColor = AppColors.tertiaryAppColor,
-      required this.validator})
+      required this.validator,
+      required this.keyboardType}
+      )
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      keyboardType: keyboardType,
       decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(horizontal: 15.0),
           hintText: textValue,
