@@ -29,4 +29,18 @@ class Validators {
     }
     return null;
   }
+
+  static String? validateName(String text) {
+    if (text.isEmpty) {
+      return 'Ingrese su nombre';
+    }
+    return null;
+  }
+
+  static String? validateLastName(String text) {
+    if (text.isEmpty) {
+      return 'Ingrese sus apellidos';
+    }
+    return null;
+  }
 }
