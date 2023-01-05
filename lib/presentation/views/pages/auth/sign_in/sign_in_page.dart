@@ -56,6 +56,7 @@ class SignInPage extends StatelessWidget {
                         controller: emailController,
                         textValue: 'Nombre',
                         validator: (value) => Validators.validateName(value),
+                        keyboardType: TextInputType.name,
                       ),
                     ),
                   ],
@@ -76,6 +77,7 @@ class SignInPage extends StatelessWidget {
                         textValue: 'Apellidos',
                         validator: (value) =>
                             Validators.validateLastName(value),
+                        keyboardType: TextInputType.name,
                       ),
                     ),
                   ],
@@ -95,6 +97,7 @@ class SignInPage extends StatelessWidget {
                         controller: passwordController,
                         textValue: 'Correo electrónico',
                         validator: (value) => Validators.validateEmail(value),
+                        keyboardType: TextInputType.emailAddress,
                       ),
                     ),
                   ],
@@ -115,6 +118,7 @@ class SignInPage extends StatelessWidget {
                         textValue: 'Contraseña',
                         validator: (value) =>
                             Validators.validatePassword(value),
+                        keyboardType: TextInputType.visiblePassword,
                       ),
                     ),
                   ],
@@ -135,6 +139,7 @@ class SignInPage extends StatelessWidget {
                         textValue: 'Confirmar Contraseña',
                         validator: (value) =>
                             Validators.validatePassword(value),
+                        keyboardType: TextInputType.visiblePassword,
                       ),
                     ),
                   ],
