@@ -18,10 +18,13 @@ class LoginPage extends StatelessWidget {
         padding: const EdgeInsets.all(30.0),
         child: Column(
           children: [
-            Container(
+            SizedBox(
               width: 250,
               height: 250,
-              color: Colors.red,
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                child: Image.asset('assets/login.png'),
+              ),
             ),
             const SizedBox(height: 30),
             Form(
@@ -67,9 +70,10 @@ class LoginPage extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 40),
                   ButtonSubmit(
                     function: (){
-                      
+
                     },
                   )
               ]),
