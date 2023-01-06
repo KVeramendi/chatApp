@@ -7,12 +7,18 @@ class UserModel extends User{
     required String firstName,
     required String lastName,
     required bool online,
+    String? password,
+    String? imageId,
+    String? imageUrl
   }) : super(
     id: id,
     email: email,
     firstName: firstName,
     lastName: lastName,
-    online: online
+    online: online,
+    password: password,
+    imageId: imageId,
+    imageUrl: imageUrl
   );
 
   factory UserModel.fromJson(Map<String,dynamic> json){
@@ -27,13 +33,19 @@ class UserModel extends User{
 
   Map<String,dynamic> toJson(){
     return {
-      "id":id
+      "email":email,
+      "firstName":firstName,
+      "lastName":lastName,
+      "imageUrl":imageUrl
     };
   }
 
   Map<String,dynamic> toSignUpJson(){
     return {
-      "id":id
+      "email":email,
+      "password":password,
+      "firstName":firstName,
+      "lastName":lastName
     };
   }
 }
