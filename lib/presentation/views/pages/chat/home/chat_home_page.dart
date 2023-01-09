@@ -3,6 +3,7 @@ import 'package:flutter_chat_app/presentation/core/colors/app_colors.dart';
 import 'package:flutter_chat_app/presentation/core/shared_widgets/card_person_widget.dart';
 
 class ChatHomePage extends StatefulWidget {
+  static const String routeName = "chathome";
   const ChatHomePage({Key? key}) : super(key: key);
 
   @override
