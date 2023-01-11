@@ -4,25 +4,25 @@ import 'package:flutter_chat_app/presentation/core/colors/app_colors.dart';
 import 'package:flutter_chat_app/presentation/core/shared_widgets/button_submit_widget.dart';
 import 'package:flutter_chat_app/presentation/core/shared_widgets/text_field_widget.dart';
 import 'package:flutter_chat_app/presentation/core/utils/validators.dart';
-import 'package:flutter_chat_app/presentation/views/pages/auth/sign_in/sign_in_controller.dart';
+import 'package:flutter_chat_app/presentation/views/pages/auth/sign_up/sign_up_controller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SignInPage extends StatefulWidget {
-  static const String routeName = "signin";
-  const SignInPage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  static const String routeName = "signup";
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
-  final SignInController _signInController = SignInController();
+class _SignUpPageState extends State<SignUpPage> {
+  final SignUpController _signUpController = SignUpController();
 
   @override
   void initState() {
     super.initState();
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-      _signInController.init(context: context);
+      _signUpController.init(context: context);
     });
   }
 
@@ -57,7 +57,7 @@ class _SignInPageState extends State<SignInPage> {
               ),
               const SizedBox(height: 30),
               Form(
-                key: _signInController.formKey,
+                key: _signUpController.formKey,
                 child: Column(children: [
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,7 +70,7 @@ class _SignInPageState extends State<SignInPage> {
                       const SizedBox(width: 10.0),
                       Expanded(
                         child: TextFieldWidget(
-                          controller: _signInController.nameController,
+                          controller: _signUpController.nameController,
                           textValue: 'Nombre',
                           validator: (value) => Validators.validateName(value),
                           keyboardType: TextInputType.name,
@@ -90,7 +90,7 @@ class _SignInPageState extends State<SignInPage> {
                       const SizedBox(width: 10.0),
                       Expanded(
                         child: TextFieldWidget(
-                          controller: _signInController.lastnameController,
+                          controller: _signUpController.lastnameController,
                           textValue: 'Apellidos',
                           validator: (value) =>
                               Validators.validateLastName(value),
@@ -111,7 +111,7 @@ class _SignInPageState extends State<SignInPage> {
                       const SizedBox(width: 10.0),
                       Expanded(
                         child: TextFieldWidget(
-                          controller: _signInController.emailController,
+                          controller: _signUpController.emailController,
                           textValue: 'Correo electrónico',
                           validator: (value) => Validators.validateEmail(value),
                           keyboardType: TextInputType.emailAddress,
@@ -131,7 +131,7 @@ class _SignInPageState extends State<SignInPage> {
                       const SizedBox(width: 10.0),
                       Expanded(
                         child: TextFieldWidget(
-                          controller: _signInController.passwordController,
+                          controller: _signUpController.passwordController,
                           textValue: 'Contraseña',
                           validator: (value) =>
                               Validators.validatePassword(value),
@@ -153,7 +153,7 @@ class _SignInPageState extends State<SignInPage> {
                       Expanded(
                         child: TextFieldWidget(
                           controller:
-                              _signInController.confirmPasswordController,
+                              _signUpController.confirmPasswordController,
                           textValue: 'Confirmar Contraseña',
                           validator: (value) =>
                               Validators.validatePassword(value),
@@ -169,7 +169,7 @@ class _SignInPageState extends State<SignInPage> {
               ButtonSubmit(
                 "Registro",
                 function: () {
-                  _signInController.submit();
+                  _signUpController.submit();
                 },
               ),
               const SizedBox(height: 40),
