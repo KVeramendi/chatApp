@@ -1,50 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:flash/flash.dart';
+import 'package:flutter_chat_app/presentation/core/colors/app_colors.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ToastUtils {
-  static void successMessage(
-      {required BuildContext context, required String message}) {
-    showFlash(
-        context: context,
-        duration: const Duration(seconds: 2),
-        builder: (context, controller) {
-          return Flash.bar(
-            position: FlashPosition.top,
-            controller: controller,
-            margin: const EdgeInsets.only(top: 10),
-            backgroundColor: Colors.greenAccent,
-            child: FlashBar(
-              content: Center(
-                child: Text(
-                  message,
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-          );
-        });
+  static void successToast(String text) {
+    Fluttertoast.showToast(
+      msg: text,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: AppColors.success,
+    );
   }
 
-  static void errorMessage(
-      {required BuildContext context, required String message}) {
-    showFlash(
-        context: context,
-        duration: const Duration(seconds: 2),
-        builder: (context, controller) {
-          return Flash.bar(
-            position: FlashPosition.top,
-            controller: controller,
-            margin: const EdgeInsets.only(top: 10),
-            backgroundColor: Colors.redAccent,
-            child: FlashBar(
-              content: Center(
-                child: Text(
-                  message,
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-          );
-        });
+  static void errorToast(String text) {
+    Fluttertoast.showToast(
+      msg: text,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: AppColors.error,
+    );
   }
 }

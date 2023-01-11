@@ -35,6 +35,7 @@ class AuthApi {
         '/signup',
         data: data.toSignUpJson(),
       );
+      print(response.data);
       if (response.statusCode == 200) {
         await Auth.instance.setSesion(response.data);
         return true;
