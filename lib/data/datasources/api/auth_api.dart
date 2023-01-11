@@ -5,7 +5,7 @@ import 'package:flutter_chat_app/domain/entities/user.dart';
 
 class AuthApi {
   final Dio _dio = Dio(BaseOptions(
-    baseUrl: '', //'$backendHost/auth',
+    baseUrl: 'http://192.168.0.6:3000/api/auth', //'$backendHost/auth',
     contentType: Headers.jsonContentType,
     responseType: ResponseType.json,
     validateStatus: (_) => true,
@@ -15,24 +15,25 @@ class AuthApi {
     try {
       final Response response = await _dio
           .post('/login', data: {'email': email, 'password': password});
-
+      print(response.data);
       if (response.statusCode == 200) {
         await Auth.instance.setSesion(response.data);
         return true;
       }
       return false;
     } catch (e) {
+      print(e);
       return false;
     }
   }
 
-  Future<bool> signIn({
+  Future<bool> signUp({
     required UserModel data,
   }) async {
     try {
       final Response response = await _dio.post(
-        '/signin',
-        data: data.toSignInJson(),
+        '/signup',
+        data: data.toSignUpJson(),
       );
       if (response.statusCode == 200) {
         await Auth.instance.setSesion(response.data);

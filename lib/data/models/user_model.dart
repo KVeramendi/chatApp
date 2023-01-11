@@ -38,7 +38,7 @@ class UserModel extends User {
     };
   }
 
-  Map<String, dynamic> toSignInJson() {
+  Map<String, dynamic> toSignUpJson() {
     return {
       "email": email,
       "password": password,
