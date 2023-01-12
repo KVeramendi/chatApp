@@ -7,5 +7,7 @@ class AppColors {
   static const Color secondaryAppColor = Color(0xFF373A43);
   static const Color tertiaryAppColor = Color(0xFFF9444F);
   static const Color hintTextColor = Color(0xFF7B7D7D);
+  static const Color success = Colors.green;
+  static const Color error = Colors.redAccent;
   static const Color transparent = Colors.transparent;
 }

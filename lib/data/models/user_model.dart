@@ -2,7 +2,7 @@ import 'package:flutter_chat_app/domain/entities/user.dart';
 
 class UserModel extends User {
   UserModel(
-      {required String id,
+      {String? id,
       required String email,
       required String firstName,
       required String lastName,
