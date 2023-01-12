@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flash/flash.dart';
 
 class ToastUtils {
   static void successMessage(
       {required BuildContext context, required String message}) {
-    showFlash(
+    /*showFlash(
         context: context,
         duration: const Duration(seconds: 2),
         builder: (context, controller) {
           return Flash.bar(
             position: FlashPosition.top,
+            behavior: FlashBehavior.floating,
             controller: controller,
             margin: const EdgeInsets.only(top: 10),
             backgroundColor: Colors.greenAccent,
@@ -22,17 +22,18 @@ class ToastUtils {
               ),
             ),
           );
-        });
+        });*/
   }
 
   static void errorMessage(
       {required BuildContext context, required String message}) {
-    showFlash(
+    /*showFlash(
         context: context,
         duration: const Duration(seconds: 2),
         builder: (context, controller) {
           return Flash.bar(
             position: FlashPosition.top,
+            behavior: FlashBehavior.floating,
             controller: controller,
             margin: const EdgeInsets.only(top: 10),
             backgroundColor: Colors.redAccent,
@@ -45,6 +46,6 @@ class ToastUtils {
               ),
             ),
           );
-        });
+        });*/
   }
 }
