@@ -28,93 +28,95 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(
-          children: [
-            SizedBox(
-              width: 250,
-              height: 250,
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                child: Image.asset('assets/login.png'),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(30.0),
+          child: Column(
+            children: [
+              SizedBox(
+                width: 250,
+                height: 250,
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  child: Image.asset('assets/login.png'),
+                ),
               ),
-            ),
-            const SizedBox(height: 50),
-            Form(
-              key: _loginController.formKey,
-              child: Column(children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.email_rounded,
-                      size: 36.0,
-                      color: AppColors.primaryAppColor,
-                    ),
-                    const SizedBox(width: 10.0),
-                    Expanded(
-                      child: TextFieldWidget(
-                        controller: _loginController.emailController,
-                        textValue: 'Email',
-                        validator: (value) => Validators.validateEmail(value),
-                        keyboardType: TextInputType.emailAddress,
+              const SizedBox(height: 50),
+              Form(
+                key: _loginController.formKey,
+                child: Column(children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.email_rounded,
+                        size: 36.0,
+                        color: AppColors.primaryAppColor,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20.0),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Icon(
-                      Icons.lock_rounded,
-                      size: 36.0,
-                      color: AppColors.primaryAppColor,
-                    ),
-                    const SizedBox(width: 10.0),
-                    Expanded(
-                      child: TextFieldWidget(
-                        keyboardType: TextInputType.emailAddress,
-                        controller: _loginController.passwordController,
-                        textValue: 'Password',
-                        validator: (value) =>
-                            Validators.validatePassword(value),
+                      const SizedBox(width: 10.0),
+                      Expanded(
+                        child: TextFieldWidget(
+                          controller: _loginController.emailController,
+                          textValue: 'Email',
+                          validator: (value) => Validators.validateEmail(value),
+                          keyboardType: TextInputType.emailAddress,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 50),
-                ButtonSubmit(
-                  "Login",
-                  function: () {
-                    _loginController.submit();
-                  },
-                ),
-                const SizedBox(height: 40.0),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  const Text(
-                    '¿Aún no tienes cuenta?',
-                    style: TextStyle(
-                      color: AppColors.primaryAppColor,
-                      fontSize: 16.0,
-                    ),
+                    ],
                   ),
-                  TextButton(
-                    onPressed: () => _loginController.toRegister(),
-                    child: const Text(
-                      'Regístrate',
+                  const SizedBox(height: 20.0),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Icon(
+                        Icons.lock_rounded,
+                        size: 36.0,
+                        color: AppColors.primaryAppColor,
+                      ),
+                      const SizedBox(width: 10.0),
+                      Expanded(
+                        child: TextFieldWidget(
+                          keyboardType: TextInputType.emailAddress,
+                          controller: _loginController.passwordController,
+                          textValue: 'Password',
+                          validator: (value) =>
+                              Validators.validatePassword(value),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 50),
+                  ButtonSubmit(
+                    "Login",
+                    function: () {
+                      _loginController.submit();
+                    },
+                  ),
+                  const SizedBox(height: 40.0),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    const Text(
+                      '¿Aún no tienes cuenta?',
                       style: TextStyle(
-                        color: AppColors.tertiaryAppColor,
+                        color: AppColors.primaryAppColor,
                         fontSize: 16.0,
                       ),
                     ),
-                  )
-                ])
-              ]),
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-            ),
-          ],
+                    TextButton(
+                      onPressed: () => _loginController.toRegister(),
+                      child: const Text(
+                        'Regístrate',
+                        style: TextStyle(
+                          color: AppColors.tertiaryAppColor,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    )
+                  ])
+                ]),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+              ),
+            ],
+          ),
         ),
       ),
       backgroundColor: AppColors.secondaryAppColor,

@@ -39,7 +39,8 @@ dependencies:
   dio: ^4.0.6
   provider: ^6.0.5
   flutter_secure_storage: ^5.0.2
-  flash: ^2.0.3+2
+  fluttertoast: ^8.1.2
+  after_layout: ^1.1.1+1
 
 dev_dependencies:
   flutter_test:
