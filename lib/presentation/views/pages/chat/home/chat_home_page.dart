@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/presentation/core/colors/app_colors.dart';
 import 'package:flutter_chat_app/presentation/core/shared_widgets/card_person_widget.dart';
+import 'package:flutter_chat_app/presentation/logic/search/chat_search/chat_search.dart';
+import 'package:flutter_chat_app/presentation/logic/services/socket/socket_service.dart';
+import 'package:provider/provider.dart';
 
 class ChatHomePage extends StatefulWidget {
   static const String routeName = "chathome";
@@ -13,12 +16,15 @@ class ChatHomePage extends StatefulWidget {
 class _ChatHomePageState extends State<ChatHomePage> {
   @override
   Widget build(BuildContext context) {
+    final socketService = Provider.of<SocketService>(context, listen: false);
     final size = MediaQuery.of(context).size;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.tertiaryAppColor,
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          socketService.emit('getRoom', {'id': 'No hay id'});
+        },
       ),
       backgroundColor: AppColors.secondaryAppColor,
       body: Container(
@@ -71,41 +77,29 @@ class _ChatHomePageState extends State<ChatHomePage> {
                         blurRadius: 4,
                         blurStyle: BlurStyle.inner),
                   ]),
-              child: const TextField(
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Search',
-                    hintStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400)),
+              width: double.infinity,
+              child: TextButton(
+                onPressed: () async {
+                  final user =
+                      await showSearch(context: context, delegate: Search());
+                  if (user != null) {
+                    // socketService.emit("getRoom", {"user": user.id});
+                  }
+                },
+                child: const Text(
+                  "Buscar",
+                  style: TextStyle(
+                    color: AppColors.white,
+                    fontSize: 16.0,
+                  ),
+                ),
               ),
             ),
-            //Tarea hacer q ocupe todo el espacio sobrante
             Expanded(
               child: SizedBox(
                 child: SingleChildScrollView(
                   child: Column(
-                    children: [
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                      CardPersonWidget(size: size),
-                    ],
+                    children: [],
                   ),
                 ),
               ),

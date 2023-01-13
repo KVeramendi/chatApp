@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_chat_app/data/datasources/local/auth_local.dart';
 import 'package:flutter_chat_app/data/models/user_model.dart';
-import 'package:flutter_chat_app/domain/entities/user.dart';
+import 'package:flutter_chat_app/presentation/core/environment_config/environment_config.dart';
 
 class AuthApi {
   final Dio _dio = Dio(BaseOptions(
-    baseUrl: 'http://192.168.0.6:3000/api/auth', //'$backendHost/auth',
+    baseUrl: '${host}api/auth', //'$backendHost/auth',
     contentType: Headers.jsonContentType,
     responseType: ResponseType.json,
     validateStatus: (_) => true,
@@ -55,8 +55,23 @@ class AuthApi {
         UserModel _user = UserModel.fromJson(response.data);
         return _user;
       }
+      return null;
     } catch (e) {
       rethrow;
+    }
+  }
+
+  Future<List<UserModel?>> getUsersByName(String name) async {
+    try {
+      final Response response = await _dio.get("/find/$name");
+      print(response.data);
+      if (response.statusCode == 200) {
+        final users = UsersModels.fromJsonList(response.data);
+        return users.items;
+      }
+      return [];
+    } catch (e) {
+      return [];
     }
   }
 }
