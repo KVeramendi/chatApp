@@ -1,5 +1,19 @@
 import 'package:flutter_chat_app/domain/entities/user.dart';
 
+class UsersModels {
+  List<UserModel> items = [];
+  UsersModels();
+  UsersModels.fromJsonList(List<dynamic> jsonList) {
+    if (jsonList.isEmpty) {
+      return;
+    }
+    for (var item in jsonList) {
+      final userModel = UserModel.fromJson(item);
+      items.add(userModel);
+    }
+  }
+}
+
 class UserModel extends User {
   UserModel(
       {String? id,

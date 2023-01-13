@@ -15,4 +15,9 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<bool> signUp({required UserModel model}) {
     return _api.signUp(data: model);
   }
+
+  @override
+  Future<List<UserModel?>> getUsersByName(String name) {
+    return _api.getUsersByName(name);
+  }
 }
