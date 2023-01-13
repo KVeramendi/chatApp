@@ -4,4 +4,6 @@ abstract class AuthRepository {
   Future<bool> login({required String email, required String password});
 
   Future<bool> signUp({required UserModel model});
+
+  Future<List<UserModel?>> getUsersByName(String name);
 }

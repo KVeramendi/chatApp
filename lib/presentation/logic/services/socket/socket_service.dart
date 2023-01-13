@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_chat_app/data/datasources/local/auth_local.dart';
+import 'package:flutter_chat_app/presentation/core/environment_config/environment_config.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 enum ServerStatus { online, offline, conecting }
@@ -16,7 +17,7 @@ class SocketService with ChangeNotifier {
   void connect() async {
     final token = await Auth.instance.accessToken;
     _socket = IO.io(
-        'http://192.168.0.6:3000/',
+        host,
         IO.OptionBuilder()
             .setTransports(['websocket'])
             .enableForceNew()
