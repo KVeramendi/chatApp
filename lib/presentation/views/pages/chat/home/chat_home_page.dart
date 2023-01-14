@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/presentation/core/colors/app_colors.dart';
-import 'package:flutter_chat_app/presentation/core/shared_widgets/card_person_widget.dart';
 import 'package:flutter_chat_app/presentation/logic/search/chat_search/chat_search.dart';
 import 'package:flutter_chat_app/presentation/logic/services/socket/socket_service.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +22,6 @@ class _ChatHomePageState extends State<ChatHomePage> {
         backgroundColor: AppColors.tertiaryAppColor,
         child: Icon(Icons.add),
         onPressed: () {
-          socketService.emit('getRoom', {'id': 'No hay id'});
         },
       ),
       backgroundColor: AppColors.secondaryAppColor,
@@ -83,7 +81,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
                   final user =
                       await showSearch(context: context, delegate: Search());
                   if (user != null) {
-                    // socketService.emit("getRoom", {"user": user.id});
+                    socketService.emit("getRoom", {"user": user.id});
                   }
                 },
                 child: const Text(
