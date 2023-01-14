@@ -5,6 +5,7 @@ import 'package:flutter_chat_app/presentation/core/shared_widgets/text_message_w
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ChatPage extends StatelessWidget {
+  static const routeName = "chatPage";
   const ChatPage({Key? key}) : super(key: key);
 
   @override
