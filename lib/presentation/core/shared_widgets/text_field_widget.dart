@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/presentation/core/colors/app_colors.dart';
 
-class TextFieldWidget extends StatelessWidget {
+class TextFieldWidget extends StatefulWidget {
   final TextEditingController controller;
   final String textValue;
   final Color cursorColor;
@@ -19,27 +19,43 @@ class TextFieldWidget extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<TextFieldWidget> createState() => _TextFieldWidgetState();
+}
+
+class _TextFieldWidgetState extends State<TextFieldWidget> {
+  bool _isTextVisible = true;
+
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
-      keyboardType: keyboardType,
+      controller: widget.controller,
+      keyboardType: widget.keyboardType,
       decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(horizontal: 15.0),
-          hintText: textValue,
+          hintText: widget.textValue,
           hintStyle: const TextStyle(color: AppColors.hintTextColor),
-          filled: filled,
-          fillColor: filled ? AppColors.primaryAppColor : null,
-          focusedBorder: filled
+          suffixIcon: widget.keyboardType.index == 7
+              ? IconButton(
+                  onPressed: () =>
+                      setState(() => _isTextVisible = !_isTextVisible),
+                  icon: _isTextVisible
+                      ? const Icon(Icons.visibility_off_rounded)
+                      : const Icon(Icons.visibility_rounded))
+              : null,
+          filled: widget.filled,
+          fillColor: widget.filled ? AppColors.primaryAppColor : null,
+          focusedBorder: widget.filled
               ? OutlineInputBorder(
                   borderSide:
                       const BorderSide(color: AppColors.tertiaryAppColor),
                   borderRadius: BorderRadius.circular(20.0))
               : InputBorder.none,
-          border: filled
+          border: widget.filled
               ? OutlineInputBorder(borderRadius: BorderRadius.circular(20.0))
               : InputBorder.none),
-      validator: (value) => validator!(value ?? ''),
-      cursorColor: cursorColor,
+      obscureText: widget.keyboardType.index == 7 ? _isTextVisible : false,
+      validator: (value) => widget.validator!(value ?? ''),
+      cursorColor: widget.cursorColor,
     );
   }
 }
