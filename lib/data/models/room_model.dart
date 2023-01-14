@@ -1,0 +1,1 @@
+// crear un modelo para el room y tambien para una lista de rooms

@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_app/data/datasources/api/auth_api.dart';
-import 'package:flutter_chat_app/data/models/user_model.dart';
-import 'package:flutter_chat_app/data/repositories_impl/auth_repository_impl.dart';
-import 'package:flutter_chat_app/domain/repositories/auth_repository.dart';
 import 'package:flutter_chat_app/presentation/core/colors/app_colors.dart';
-import 'package:flutter_chat_app/presentation/core/shared_widgets/card_person_widget.dart';
-import 'package:flutter_chat_app/presentation/core/shared_widgets/search_widget.dart';
 import 'package:flutter_chat_app/presentation/logic/search/chat_search/chat_search.dart';
 import 'package:flutter_chat_app/presentation/logic/services/socket/socket_service.dart';
+import 'package:flutter_chat_app/presentation/views/pages/chat/chat_page/chat_page.dart';
 import 'package:flutter_chat_app/presentation/views/pages/chat/home/chat_home_controller.dart';
 import 'package:provider/provider.dart';
 
@@ -25,14 +20,26 @@ class _ChatHomePageState extends State<ChatHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final socketService = Provider.of<SocketService>(context, listen: false);
+    final socketService = Provider.of<SocketService>(context);
+
+    socketService.socket.on('create-room', (payload){
+      print("Se creo la sala");
+      print(payload);
+      Navigator.pushNamed(context, ChatPage.routeName);
+    });
+
+    socketService.socket.on('get-room', (payload){
+      print("Se encontro una sala");
+      print(payload);
+      Navigator.pushNamed(context, ChatPage.routeName);
+    });
+
     final size = MediaQuery.of(context).size;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.tertiaryAppColor,
         child: const Icon(Icons.add),
         onPressed: () {
-          socketService.emit('getRoom', {'id': 'No hay id'});
         },
       ),
       backgroundColor: AppColors.secondaryAppColor,
@@ -102,7 +109,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
                   final user =
                       await showSearch(context: context, delegate: Search());
                   if (user != null) {
-                    // socketService.emit("getRoom", {"user": user.id});
+                    socketService.emit("getRoom", {"user": user.id});
                   }
                 },
                 child: const Text(
