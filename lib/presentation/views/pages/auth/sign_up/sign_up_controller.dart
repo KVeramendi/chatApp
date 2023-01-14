@@ -5,8 +5,7 @@ import 'package:flutter_chat_app/data/repositories_impl/auth_repository_impl.dar
 import 'package:flutter_chat_app/domain/repositories/auth_repository.dart';
 import 'package:flutter_chat_app/presentation/core/colors/app_colors.dart';
 import 'package:flutter_chat_app/presentation/core/utils/toast.dart';
-import 'package:flutter_chat_app/presentation/views/pages/auth/sign_up/sign_up_page.dart';
-import 'package:flutter_chat_app/presentation/views/pages/chat/home/chat_home_page.dart';
+import 'package:flutter_chat_app/presentation/views/pages/splash/splash_page.dart';
 
 class SignUpController {
   BuildContext? context;
@@ -45,7 +44,7 @@ class SignUpController {
       ));
       Navigator.pop(context!);
       if (signUp) {
-        Navigator.pushNamed(context!, SignUpPage.routeName);
+        Navigator.pushNamed(context!, SplashPage.routeName);
       } else {
         ToastUtils.errorToast("Falló el proceso de registro");
       }

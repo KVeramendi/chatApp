@@ -13,7 +13,22 @@ class Search extends SearchDelegate<UserModel?> {
 
   @override
   ThemeData appBarTheme(BuildContext context) {
-    return Theme.of(context);
+    return ThemeData(
+      scaffoldBackgroundColor: AppColors.secondaryAppColor,
+      hintColor: AppColors.white,
+      textTheme: const TextTheme(
+        headline6: TextStyle(
+          color: AppColors.white,
+        ),
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        border: InputBorder.none,
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.secondaryAppColor,
+        elevation: 0,
+      ),
+    );
   }
 
   @override

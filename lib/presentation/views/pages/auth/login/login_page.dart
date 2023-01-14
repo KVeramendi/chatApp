@@ -76,11 +76,11 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(width: 10.0),
                       Expanded(
                         child: TextFieldWidget(
-                          keyboardType: TextInputType.emailAddress,
                           controller: _loginController.passwordController,
                           textValue: 'Password',
                           validator: (value) =>
                               Validators.validatePassword(value),
+                          keyboardType: TextInputType.visiblePassword,
                         ),
                       ),
                     ],
